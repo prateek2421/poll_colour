@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poll App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      #poll-container {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      h1 {
+        color: #333;
+      }
+      .option {
+        display: inline-block;
+        margin: 10px;
+        cursor: pointer;
+        font-size: 20px;
+      }
+      .vote-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="poll-container">
+      <h1>What's your favorite color?</h1>
+      <div class="option" id="option1">Blue</div>
+      <div class="option" id="option2">Red</div>
+      <button class="vote-button" onclick="vote('option1')">
+        Vote for Blue
+      </button>
+      <button class="vote-button" onclick="vote('option2')">
+        Vote for Red
+      </button>
+      <p>Total Votes: <span id="total-votes">0</span></p>
+    </div>
+
+    <script>
+      let votes = {
+        option1: 0,
+        option2: 0,
+      };
+
+      function vote(option) {
+        if (votes.hasOwnProperty(option)) {
+          votes[option]++;
+          updateResults();
+        }
+      }
+
+      function updateResults() {
+        const totalVotes = votes.option1 + votes.option2;
+        document.getElementById("total-votes").textContent = totalVotes;
+        document.getElementById(
+          "option1"
+        ).textContent = `Blue: ${votes.option1}`;
+        document.getElementById(
+          "option2"
+        ).textContent = `Red: ${votes.option2}`;
+      }
+
+      updateResults();
+    </script>
+  </body>
+</html>
